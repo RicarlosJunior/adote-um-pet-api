@@ -21,7 +21,7 @@ public class AdoteUmPetApplication implements CommandLineRunner {
 	
 	//Apos a implementação da interface CommandLineRunner
 	//Metodo abaixo e execultado quando a aplicação estiver acabado de startar
-	//neste exemplo toda vez que a aplicação subir vamo criar um pet para teste
+	//neste exemplo toda vez que a aplicação subir vamo criar alguns pets para teste
 	
 	@Override
 	public void run(String... args) throws Exception {
