@@ -1,34 +1,40 @@
 package br.com.treinaweb.core.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.treinaweb.core.dto.pet.PetMapper;
+import br.com.treinaweb.core.dto.pet.PetRequest;
 import br.com.treinaweb.core.dto.pet.PetResponse;
-import br.com.treinaweb.core.model.Pet;
-import br.com.treinaweb.core.repository.PetRepository;
+import br.com.treinaweb.core.service.PetService;
+
+//Classe responsavel pelas requisiçoes e resposatas da nossa aplicacao
 
 @RestController
+@RequestMapping("/api/pets")
 public class PetController {
 
 	@Autowired
-	private PetRepository petRepository;
+	private PetService petService;
 	
-	@Autowired
-	private PetMapper petMapper; //Classe reconhecida pelo Spring como (Bean Spring  devido a anotação Component) que mapeia um pet model em um dto para resposta
-	
-	@GetMapping("/api/pets")
+	@GetMapping
 	public List<PetResponse> findAll(){
-		var pets = petRepository.findAll();
-		var petsResponse = new ArrayList<PetResponse>();
-		for (Pet pet : pets) {
-			petsResponse.add(petMapper.toResponse(pet));
-		}
-		return petsResponse;
+		return petService.findAll();
+	}
+	
+	@PostMapping
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public PetResponse create(@RequestBody @Valid PetRequest petRequest) {
+		return petService.create(petRequest);
 	}
 	
 }

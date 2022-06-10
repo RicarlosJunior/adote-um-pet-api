@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor //Gera um construtor sem argumentos 
 @AllArgsConstructor //Gera um construtor com todos os argumentos
 @EqualsAndHashCode(onlyExplicitlyIncluded = true) //Essa anotação diz que eu vou definir os campos para equals e hashcode
+@Builder //Anotaçao que nos permite usar o padrao de porjeto builder ja implementado no lombok
 public class Pet {
 	
 	@Id

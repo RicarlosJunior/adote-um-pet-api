@@ -17,21 +17,36 @@ public class AdocaoMapper {
 	private PetMapper petMapper;
 	
 	public Adocao toModel(AdocaoRequest adocaoRequest) {
-		var adocao = new Adocao();
+		//1°Versão sem padrao de projeto builder 
+		/*var adocao = new Adocao();
 		adocao.setEmail(adocaoRequest.getEmail());
 		adocao.setValor(adocaoRequest.getValor());
 		adocao.setPet(petRepository.findByIdOrElseThrow(adocaoRequest.getIdPet()));
-		return adocao;
+		return adocao;*/
+		
+		//2°Versão com padrao de projeto builder (padroes de projetos de categoria criacional) 
+		return Adocao.builder()
+				.email(adocaoRequest.getEmail())
+				.valor(adocaoRequest.getValor())
+				.pet(petRepository.findByIdOrElseThrow(adocaoRequest.getIdPet()))
+				.build();
 	}
 	
 	
 	public AdocaoResponse toResponse(Adocao adocao) {
-		var adocaoResponse = new AdocaoResponse();
+		//1°Versão sem padrao de projeto builder 
+		/*var adocaoResponse = new AdocaoResponse();
 		adocaoResponse.setId(adocao.getId());
 		adocaoResponse.setEmail(adocao.getEmail());
 		adocaoResponse.setValor(adocao.getValor());
 		adocaoResponse.setPetResponse(petMapper.toResponse(adocao.getPet()));
-		return adocaoResponse;
+		return adocaoResponse;*/
+		return AdocaoResponse.builder()
+				.id(adocao.getId())
+				.email(adocao.getEmail())
+				.valor(adocao.getValor())
+				.petResponse(petMapper.toResponse(adocao.getPet()))
+				.build();
 	}
 	
 }
