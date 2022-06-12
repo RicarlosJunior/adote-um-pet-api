@@ -45,7 +45,7 @@ public class AdocaoMapper {
 				.id(adocao.getId())
 				.email(adocao.getEmail())
 				.valor(adocao.getValor())
-				.petResponse(petMapper.toResponse(adocao.getPet()))
+				.pet(petMapper.toResponse(adocao.getPet()))
 				.build();
 	}
 	

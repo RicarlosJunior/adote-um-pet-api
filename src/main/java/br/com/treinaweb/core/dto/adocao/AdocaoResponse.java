@@ -17,6 +17,6 @@ public class AdocaoResponse {
 	private Long id;
 	private BigDecimal valor;
 	private String email;
-	private PetResponse petResponse;
+	private PetResponse pet;
 	
 }
